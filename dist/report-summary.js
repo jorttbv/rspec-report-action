@@ -66,6 +66,7 @@ const reportSummary = async (result) => {
     core.summary.addHeading(`${title} ${icon}`).addRaw(result.summary).addBreak();
     if (!result.success) {
         core.summary
+            .addBreak()
             .addTable([
             [
                 { data: 'Example :link:', header: true },

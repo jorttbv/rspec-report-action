@@ -55,6 +55,7 @@ export const reportSummary = async (result: RspecResult): Promise<void> => {
 
   if (!result.success) {
     core.summary
+      .addBreak()
       .addTable([
         [
           {data: 'Example :link:', header: true},
