@@ -44,7 +44,7 @@ async function examples2Table(examples) {
         ...examples
             .slice(0, MAX_TABLE_ROWS)
             .map(({ filePath, lineNumber, description, message }) => [
-            `\n[${filePath}:${lineNumber}](${baseUrl}/${filePath}#L${lineNumber})`,
+            ` [${filePath}:${lineNumber}](${baseUrl}/${filePath}#L${lineNumber}) `,
             description,
             truncate(message, MAX_MESSAGE_LENGTH)
                 .replace(/\\n/g, ' ')
