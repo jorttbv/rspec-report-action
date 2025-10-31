@@ -39412,7 +39412,7 @@ const reportSummary = async (result) => {
         formatMessage(message)
     ]);
     const slowestExamplesRows = result.slowExamples.map(({ filePath, lineNumber, description, runTime }) => [
-        [filePath, lineNumber].join(':'),
+        `[${filePath}:${lineNumber}](${baseUrl}/${filePath}#L${lineNumber})`,
         description,
         String((0, util_1.floor)(runTime, 5))
     ]);
