@@ -99,3 +99,12 @@ jobs:
         with:
           json-path: /tmp/json-reports/rspec_results-*.json
 ```
+
+## Development
+
+### Requirements
+- Node.js (NPM) version 22.20.0
+- pnpm version 9.4.0 (see [installation](https://pnpm.io/installation))
+
+Setup:
+1. install dependencies with: `pnpm install`
