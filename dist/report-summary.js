@@ -63,10 +63,11 @@ const reportSummary = async (result) => {
         description,
         String((0, util_1.floor)(runTime, 5))
     ]);
-    core.summary.addHeading(`${title} ${icon}`).addRaw(result.summary).addBreak();
+    core.summary
+        .addHeading(`${title} ${icon}`)
+        .addRaw(`<p>${result.summary}</p>`);
     if (!result.success) {
         core.summary
-            .addBreak()
             .addTable([
             [
                 { data: 'Example :link:', header: true },
@@ -79,7 +80,7 @@ const reportSummary = async (result) => {
     }
     await core.summary
         .addHeading(profileTitle, 1)
-        .addRaw(slowestExamplesSummary(result))
+        .addRaw(`<p>${slowestExamplesSummary(result)}</p>`)
         .addTable([
         [
             { data: 'Example', header: true },

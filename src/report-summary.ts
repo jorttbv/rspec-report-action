@@ -51,11 +51,10 @@ export const reportSummary = async (result: RspecResult): Promise<void> => {
     ]
   )
 
-  core.summary.addHeading(`${title} ${icon}`).addRaw(result.summary).addBreak()
+  core.summary.addHeading(`${title} ${icon}`).addRaw(`<p>${result.summary}</p>`)
 
   if (!result.success) {
     core.summary
-      .addBreak()
       .addTable([
         [
           {data: 'Example :link:', header: true},
@@ -69,7 +68,7 @@ export const reportSummary = async (result: RspecResult): Promise<void> => {
 
   await core.summary
     .addHeading(profileTitle, 1)
-    .addRaw(slowestExamplesSummary(result))
+    .addRaw(`<p>${slowestExamplesSummary(result)}</p>`)
     .addTable([
       [
         {data: 'Example', header: true},
