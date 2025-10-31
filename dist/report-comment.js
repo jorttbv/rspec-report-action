@@ -63,7 +63,7 @@ const commentGeneralOptions = () => {
     };
 };
 const reportComment = async (result) => {
-    const icon = result.success ? ':tada:' : ':cold_sweat:';
+    const icon = result.success ? ':white_check_mark:' : ':x:';
     const title = core.getInput('title', { required: true });
     if (result.success) {
         await (0, actions_replace_comment_1.deleteComment)({
@@ -75,9 +75,9 @@ const reportComment = async (result) => {
     }
     await (0, actions_replace_comment_1.default)({
         ...commentGeneralOptions(),
-        body: `# ${title}
+        body: `# ${title} ${icon}
 <details>
-<summary>${result.summary} ${icon}</summary>
+<summary>${result.summary}</summary>
 
 ${await examples2Table(result.examples)}
 

@@ -53,7 +53,7 @@ const commentGeneralOptions = (): CommentGeneralOptions => {
 }
 
 export const reportComment = async (result: RspecResult): Promise<void> => {
-  const icon = result.success ? ':tada:' : ':cold_sweat:'
+  const icon = result.success ? ':white_check_mark:' : ':x:'
   const title = core.getInput('title', {required: true})
 
   if (result.success) {
@@ -67,9 +67,9 @@ export const reportComment = async (result: RspecResult): Promise<void> => {
 
   await replaceComment({
     ...commentGeneralOptions(),
-    body: `# ${title}
+    body: `# ${title} ${icon}
 <details>
-<summary>${result.summary} ${icon}</summary>
+<summary>${result.summary}</summary>
 
 ${await examples2Table(result.examples)}
 
