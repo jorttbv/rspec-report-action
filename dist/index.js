@@ -39378,6 +39378,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.reportSummary = void 0;
 const core = __importStar(__nccwpck_require__(9093));
 const github = __importStar(__nccwpck_require__(5942));
+const util_1 = __nccwpck_require__(8438);
 const formatMessage = (message) => {
     const lines = message
         .replace(/\\n/g, '\n')
@@ -39392,19 +39393,33 @@ ${bodyLines.join('<br>')}
 </details>
 `;
 };
+const slowestExamplesSummary = (result) => {
+    const totalTime = result.totalTime;
+    const slowTotalTime = result.slowExamples.reduce((total, { runTime }) => total + runTime, 0);
+    const percentage = (slowTotalTime / totalTime) * 100;
+    // eslint-disable-next-line i18n-text/no-en
+    return `Top ${result.slowExamples.length} slowest examples (${(0, util_1.floor)(slowTotalTime, 2)} seconds, ${(0, util_1.floor)(percentage, 2)}% of total time)`;
+};
 const reportSummary = async (result) => {
     const icon = result.success ? ':tada:' : ':cold_sweat:';
     const summary = `${icon} ${result.summary}`;
     const baseUrl = `${github.context.serverUrl}/${github.context.repo.owner}/${github.context.repo.repo}/blob/${github.context.sha}`;
     const title = core.getInput('title', { required: true });
+    const profileTitle = core.getInput('profileTitle', { required: true });
     const rows = result.examples.map(({ filePath, lineNumber, description, message }) => [
         `\n\n[${filePath}:${lineNumber}](${baseUrl}/${filePath}#L${lineNumber})`,
         description,
         formatMessage(message)
     ]);
+    const slowestExamplesRows = result.slowExamples.map(({ filePath, lineNumber, description, runTime }) => [
+        [filePath, lineNumber].join(':'),
+        description,
+        String((0, util_1.floor)(runTime, 5))
+    ]);
     await core.summary
         .addHeading(title)
         .addRaw(summary)
+        .addBreak()
         .addTable([
         [
             { data: 'Example :link:', header: true },
@@ -39413,9 +39428,37 @@ const reportSummary = async (result) => {
         ],
         ...rows
     ])
+        .addSeparator()
+        .addHeading(profileTitle, 2)
+        .addDetails(slowestExamplesSummary(result), core.summary
+        .addTable([
+        [
+            { data: 'Example', header: true },
+            { data: 'Description', header: true },
+            { data: 'Time in seconds', header: true }
+        ],
+        ...slowestExamplesRows
+    ])
+        .stringify())
         .write();
 };
 exports.reportSummary = reportSummary;
+
+
+/***/ }),
+
+/***/ 8438:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.floor = void 0;
+const floor = (n, ndigits) => {
+    const shift = Math.pow(10, ndigits);
+    return Math.floor(n * shift) / shift;
+};
+exports.floor = floor;
 
 
 /***/ }),

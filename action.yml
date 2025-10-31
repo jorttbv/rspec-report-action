@@ -22,7 +22,7 @@ inputs:
     required: false
   profileTitle:
     description: "Title for profile"
-    default: "# Slowest examples"
+    default: "Slowest examples"
     required: false
 runs:
   using: "node20"
