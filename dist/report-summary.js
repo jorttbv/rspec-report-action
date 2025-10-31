@@ -61,11 +61,9 @@ const reportSummary = async (result) => {
     const slowestExamplesRows = result.slowExamples.map(({ filePath, lineNumber, description, runTime }) => [
         `\n\n[${filePath}:${lineNumber}](${baseUrl}/${filePath}#L${lineNumber})`,
         description,
-        String((0, util_1.floor)(runTime, 5))
+        String((0, util_1.floor)(runTime, 2))
     ]);
-    core.summary
-        .addHeading(`${title} ${icon}`)
-        .addRaw(`<p>${result.summary}</p>`);
+    core.summary.addHeading(`${title} ${icon}`).addRaw(`<p>${result.summary}</p>`);
     if (!result.success) {
         core.summary
             .addTable([

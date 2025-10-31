@@ -47,7 +47,7 @@ export const reportSummary = async (result: RspecResult): Promise<void> => {
     ({filePath, lineNumber, description, runTime}) => [
       `\n\n[${filePath}:${lineNumber}](${baseUrl}/${filePath}#L${lineNumber})`,
       description,
-      String(floor(runTime, 5))
+      String(floor(runTime, 2))
     ]
   )
 
