@@ -39286,12 +39286,13 @@ const truncate = (str, maxLength) => {
 };
 async function examples2Table(examples) {
     const { markdownTable } = await __nccwpck_require__.e(/* import() */ 448).then(__nccwpck_require__.bind(__nccwpck_require__, 6850));
+    const baseUrl = `${github.context.serverUrl}/${github.context.repo.owner}/${github.context.repo.repo}/blob/${github.context.sha}`;
     return markdownTable([
         ['Example', 'Description', 'Message'],
         ...examples
             .slice(0, MAX_TABLE_ROWS)
             .map(({ filePath, lineNumber, description, message }) => [
-            [filePath, lineNumber].join(':'),
+            `\n[${filePath}:${lineNumber}](${baseUrl}/${filePath}#L${lineNumber})`,
             description,
             truncate(message, MAX_MESSAGE_LENGTH)
                 .replace(/\\n/g, ' ')
