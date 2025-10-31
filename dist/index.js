@@ -39412,7 +39412,7 @@ const reportSummary = async (result) => {
         formatMessage(message)
     ]);
     const slowestExamplesRows = result.slowExamples.map(({ filePath, lineNumber, description, runTime }) => [
-        `[${filePath}:${lineNumber}](${baseUrl}/${filePath}#L${lineNumber})`,
+        `\n\n[${filePath}:${lineNumber}](${baseUrl}/${filePath}#L${lineNumber})`,
         description,
         String((0, util_1.floor)(runTime, 5))
     ]);
@@ -39428,8 +39428,8 @@ const reportSummary = async (result) => {
         ],
         ...rows
     ])
-        .write();
-    await core.summary
+        .addBreak()
+        .addBreak()
         .addHeading(profileTitle, 1)
         .addRaw(slowestExamplesSummary(result))
         .addTable([
