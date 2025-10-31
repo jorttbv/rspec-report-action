@@ -35,7 +35,7 @@ jobs:
         run: bundle exec rspec -f j -o tmp/rspec_results.json -f p
 
       - name: RSpec Report
-        uses: jorttbv/rspec-report-action@v7
+        uses: jorttbv/rspec-report-action@main
         with:
           json-path: tmp/rspec_results.json
         if: always()
@@ -95,7 +95,7 @@ jobs:
           path: /tmp/json-reports
           merge-multiple: true
       - name: RSpec Report
-        uses: jorttbv/rspec-report-action@v7
+        uses: jorttbv/rspec-report-action@main
         with:
           json-path: /tmp/json-reports/rspec_results-*.json
 ```
