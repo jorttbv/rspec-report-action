@@ -17,7 +17,6 @@ See [action.yml](action.yml)
 | `json-path` | Path to RSpec result json file. (Support for glob pattern) | | yes |
 | `token` | GITHUB_TOKEN | `${{ github.token }}` | no |
 | `title` | Summary title | `# :cold_sweat: RSpec failure` | no |
-| `hideFooterLink` | Hide footer link | `false` | no |
 | `comment` | Set this if want to comment report to pull request | `true` | no |
 
 ## Example
