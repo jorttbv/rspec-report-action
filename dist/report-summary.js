@@ -63,10 +63,7 @@ const reportSummary = async (result) => {
         description,
         String((0, util_1.floor)(runTime, 5))
     ]);
-    core.summary
-        .addHeading(`${title} ${icon}`)
-        .addRaw(result.summary)
-        .addBreak();
+    core.summary.addHeading(`${title} ${icon}`).addRaw(result.summary).addBreak();
     if (!result.success) {
         core.summary
             .addTable([

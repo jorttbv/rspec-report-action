@@ -39319,20 +39319,27 @@ const commentGeneralOptions = () => {
 const reportComment = async (result) => {
     const icon = result.success ? ':white_check_mark:' : ':x:';
     const title = core.getInput('title', { required: true });
-    const failedTable = result.success
-        ? ''
-        : await examples2Table(result.examples);
-    await (0, actions_replace_comment_1.default)({
-        ...commentGeneralOptions(),
-        body: `# ${title}
+    if (result.success) {
+        await (0, actions_replace_comment_1.default)({
+            ...commentGeneralOptions(),
+            body: `# ${title}
+
+${icon} ${result.summary}`
+        });
+    }
+    else {
+        await (0, actions_replace_comment_1.default)({
+            ...commentGeneralOptions(),
+            body: `# ${title}
 <details>
 <summary>${icon} ${result.summary}</summary>
 
-${failedTable}
+${await examples2Table(result.examples)}
 
 </details>
 `
-    });
+        });
+    }
 };
 exports.reportComment = reportComment;
 

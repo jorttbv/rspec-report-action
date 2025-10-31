@@ -56,19 +56,24 @@ export const reportComment = async (result: RspecResult): Promise<void> => {
   const icon = result.success ? ':white_check_mark:' : ':x:'
   const title = core.getInput('title', {required: true})
 
-  const failedTable = result.success
-    ? ''
-    : await examples2Table(result.examples)
+  if (result.success) {
+    await replaceComment({
+      ...commentGeneralOptions(),
+      body: `# ${title}
 
-  await replaceComment({
-    ...commentGeneralOptions(),
-    body: `# ${title}
+${icon} ${result.summary}`
+    })
+  } else {
+    await replaceComment({
+      ...commentGeneralOptions(),
+      body: `# ${title}
 <details>
 <summary>${icon} ${result.summary}</summary>
 
-${failedTable}
+${await examples2Table(result.examples)}
 
 </details>
 `
-  })
+    })
+  }
 }
