@@ -65,7 +65,6 @@ export const reportSummary = async (result: RspecResult): Promise<void> => {
       ...rows
     ])
     .addBreak()
-    .addBreak()
     .addHeading(profileTitle, 1)
     .addRaw(slowestExamplesSummary(result))
     .addTable([

@@ -39429,7 +39429,6 @@ const reportSummary = async (result) => {
         ...rows
     ])
         .addBreak()
-        .addBreak()
         .addHeading(profileTitle, 1)
         .addRaw(slowestExamplesSummary(result))
         .addTable([
