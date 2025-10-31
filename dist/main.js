@@ -53,10 +53,6 @@ async function run() {
         if (core.getInput('comment') === 'true' && github.context.issue.number) {
             await (0, report_comment_1.reportComment)(result);
         }
-        // TODO change profile comment to publish in build summary
-        // if (github.context.issue.number) {
-        //   await reportProfileComment(result)
-        // }
     }
     catch (error) {
         if (error instanceof Error) {
