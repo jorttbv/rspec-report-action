@@ -78,7 +78,7 @@ const reportSummary = async (result) => {
     ])
         .addSeparator()
         .addHeading(profileTitle, 2)
-        .addDetails(slowestExamplesSummary(result), core.summary
+        .addRaw(slowestExamplesSummary(result))
         .addTable([
         [
             { data: 'Example', header: true },
@@ -87,7 +87,6 @@ const reportSummary = async (result) => {
         ],
         ...slowestExamplesRows
     ])
-        .stringify())
         .write();
 };
 exports.reportSummary = reportSummary;

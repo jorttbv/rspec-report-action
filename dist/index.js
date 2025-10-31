@@ -39331,7 +39331,7 @@ const reportComment = async (result) => {
     }
     await (0, actions_replace_comment_1.default)({
         ...commentGeneralOptions(),
-        body: `${title}
+        body: `# ${title}
 <details>
 <summary>${result.summary} ${icon}</summary>
 
@@ -39430,7 +39430,7 @@ const reportSummary = async (result) => {
     ])
         .addSeparator()
         .addHeading(profileTitle, 2)
-        .addDetails(slowestExamplesSummary(result), core.summary
+        .addRaw(slowestExamplesSummary(result))
         .addTable([
         [
             { data: 'Example', header: true },
@@ -39439,7 +39439,6 @@ const reportSummary = async (result) => {
         ],
         ...slowestExamplesRows
     ])
-        .stringify())
         .write();
 };
 exports.reportSummary = reportSummary;
