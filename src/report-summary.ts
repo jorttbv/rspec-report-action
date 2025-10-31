@@ -30,8 +30,7 @@ const slowestExamplesSummary = (result: RspecResult): string => {
 }
 
 export const reportSummary = async (result: RspecResult): Promise<void> => {
-  const icon = result.success ? ':tada:' : ':cold_sweat:'
-  const summary = `${icon} ${result.summary}`
+  const icon = result.success ? ':white_check_mark:' : ':x:'
   const baseUrl = `${github.context.serverUrl}/${github.context.repo.owner}/${github.context.repo.repo}/blob/${github.context.sha}`
   const title = core.getInput('title', {required: true})
   const profileTitle = core.getInput('profileTitle', {required: true})
@@ -53,8 +52,8 @@ export const reportSummary = async (result: RspecResult): Promise<void> => {
   )
 
   await core.summary
-    .addHeading(title)
-    .addRaw(summary)
+    .addHeading(`${title} ${icon}`)
+    .addRaw(result.summary)
     .addBreak()
     .addTable([
       [
