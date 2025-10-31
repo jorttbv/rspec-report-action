@@ -106,5 +106,8 @@ jobs:
 - Node.js (NPM) version 22.20.0
 - pnpm version 9.4.0 (see [installation](https://pnpm.io/installation))
 
-Setup:
+### Setup
 1. install dependencies with: `pnpm install`
+
+### Remember!
+When making changes to the code, you need to re-build the code with: `pnpm run all`
