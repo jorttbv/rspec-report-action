@@ -1,5 +1,5 @@
 name: "RSpec Report"
-description: "A GitHub Action that report RSpec failure."
+description: "A GitHub Action that report RSpec failures"
 branding:
   icon: alert-triangle
   color: red
@@ -14,7 +14,7 @@ inputs:
     required: true
   title:
     description: "Title"
-    default: "# :cold_sweat: RSpec failure"
+    default: "# Test report"
     required: false
   comment:
     description: "Set this if want to comment report to pull request"
