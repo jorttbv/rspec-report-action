@@ -62,6 +62,8 @@ const commentGeneralOptions = () => {
     };
 };
 const reportComment = async (result) => {
+    const icon = result.success ? ':tada:' : ':cold_sweat:';
+    const summary = `${icon} ${result.summary}`;
     const title = core.getInput('title', { required: true });
     if (result.success) {
         await (0, actions_replace_comment_1.deleteComment)({
@@ -74,6 +76,7 @@ const reportComment = async (result) => {
     await (0, actions_replace_comment_1.default)({
         ...commentGeneralOptions(),
         body: `${title}
+${summary}
 <details>
 <summary>${result.summary}</summary>
 
