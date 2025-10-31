@@ -26,9 +26,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.reportSummary = void 0;
 const core = __importStar(require("@actions/core"));
 const github = __importStar(require("@actions/github"));
-const FOOTER_LINK = 
-// eslint-disable-next-line i18n-text/no-en
-'Reported by [rspec-report-action](https://github.com/SonicGarden/rspec-report-action)';
 const formatMessage = (message) => {
     const lines = message
         .replace(/\\n/g, '\n')
@@ -52,7 +49,6 @@ const reportSummary = async (result) => {
         description,
         formatMessage(message)
     ]);
-    const hideFooterLink = core.getInput('hideFooterLink') === 'true';
     await core.summary
         .addHeading('RSpec Result')
         .addRaw(summary)
@@ -64,7 +60,6 @@ const reportSummary = async (result) => {
         ],
         ...rows
     ])
-        .addRaw(hideFooterLink ? '' : `\n${FOOTER_LINK}`)
         .write();
 };
 exports.reportSummary = reportSummary;
