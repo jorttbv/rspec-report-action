@@ -14,7 +14,7 @@ inputs:
     required: true
   title:
     description: "Title"
-    default: "# Test report"
+    default: "Test report"
     required: false
   comment:
     description: "Set this if want to comment report to pull request"

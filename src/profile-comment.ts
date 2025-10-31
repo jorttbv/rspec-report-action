@@ -59,7 +59,7 @@ export const reportProfileComment = async (
 
   await replaceComment({
     ...commentGeneralOptions(),
-    body: `${title}
+    body: `# ${title}
 <details>
 <summary>${summary}</summary>
 

@@ -67,7 +67,7 @@ const reportProfileComment = async (result) => {
     const summary = slowestExamplesSummary(result);
     await (0, actions_replace_comment_1.default)({
         ...commentGeneralOptions(),
-        body: `${title}
+        body: `# ${title}
 <details>
 <summary>${summary}</summary>
 
