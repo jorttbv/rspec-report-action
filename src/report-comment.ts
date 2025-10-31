@@ -68,7 +68,7 @@ ${icon} ${result.summary}`
       ...commentGeneralOptions(),
       body: `# ${title}
 <details>
-<summary>${icon} ${result.summary}</summary>
+<summary>${icon} ${result.summary}<br><br></summary>
 
 ${await examples2Table(result.examples)}
 
