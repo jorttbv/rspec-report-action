@@ -46,7 +46,7 @@ export const reportSummary = async (result: RspecResult): Promise<void> => {
 
   const slowestExamplesRows = result.slowExamples.map(
     ({filePath, lineNumber, description, runTime}) => [
-      `[${filePath}:${lineNumber}](${baseUrl}/${filePath}#L${lineNumber})`,
+      `\n\n[${filePath}:${lineNumber}](${baseUrl}/${filePath}#L${lineNumber})`,
       description,
       String(floor(runTime, 5))
     ]
