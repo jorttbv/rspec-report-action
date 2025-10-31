@@ -64,8 +64,10 @@ export const reportSummary = async (result: RspecResult): Promise<void> => {
       ],
       ...rows
     ])
-    .addSeparator()
-    .addHeading(profileTitle, 2)
+    .write()
+
+  await core.summary
+    .addHeading(profileTitle, 1)
     .addRaw(slowestExamplesSummary(result))
     .addTable([
       [

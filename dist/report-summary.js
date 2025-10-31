@@ -76,8 +76,9 @@ const reportSummary = async (result) => {
         ],
         ...rows
     ])
-        .addSeparator()
-        .addHeading(profileTitle, 2)
+        .write();
+    await core.summary
+        .addHeading(profileTitle, 1)
         .addRaw(slowestExamplesSummary(result))
         .addTable([
         [
