@@ -24,9 +24,7 @@ async function run(): Promise<void> {
     const result = await parse(jsonPaths)
     core.info(result.summary)
 
-    if (!result.success) {
-      await reportSummary(result)
-    }
+    await reportSummary(result)
 
     if (core.getInput('comment') === 'true' && github.context.issue.number) {
       await reportComment(result)

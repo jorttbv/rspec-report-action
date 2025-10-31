@@ -49,9 +49,7 @@ async function run() {
         });
         const result = await (0, parse_1.parse)(jsonPaths);
         core.info(result.summary);
-        if (!result.success) {
-            await (0, report_summary_1.reportSummary)(result);
-        }
+        await (0, report_summary_1.reportSummary)(result);
         if (core.getInput('comment') === 'true' && github.context.issue.number) {
             await (0, report_comment_1.reportComment)(result);
         }
