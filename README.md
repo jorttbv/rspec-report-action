@@ -12,12 +12,13 @@ Reported in Job Summary.
 
 See [action.yml](action.yml)
 
-| Name | Description | Default               | Required |
-| - | - |-----------------------| - |
-| `json-path` | Path to RSpec result json file. (Support for glob pattern) |                       | yes |
-| `token` | GITHUB_TOKEN | `${{ github.token }}` | no |
-| `title` | Summary title | `# Test report`       | no |
-| `comment` | Set this if want to comment report to pull request | `true`                | no |
+| Name           | Description                                                | Default               | Required |
+|----------------|------------------------------------------------------------|-----------------------|----------|
+| `json-path`    | Path to RSpec result json file. (Support for glob pattern) |                       | yes      |
+| `token`        | GITHUB_TOKEN                                               | `${{ github.token }}` | no       |
+| `title`        | Title for PR comment and build summary                     | `Test report`         | no       |
+| `profileTitle` | Title for slowest tests report                             | `Slowest examples`    | no       |
+| `comment`      | Set this if want to comment report to pull request         | `true`                | no       |
 
 ## Example
 

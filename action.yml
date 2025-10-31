@@ -13,7 +13,7 @@ inputs:
     description: "JSON File path"
     required: true
   title:
-    description: "Title"
+    description: "Title for PR comment and build summary"
     default: "Test report"
     required: false
   comment:
@@ -21,7 +21,7 @@ inputs:
     default: "true"
     required: false
   profileTitle:
-    description: "Title for profile"
+    description: "Title for slowest tests report"
     default: "Slowest examples"
     required: false
 runs:
