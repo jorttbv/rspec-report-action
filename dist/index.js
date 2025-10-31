@@ -39408,19 +39408,20 @@ const reportSummary = async (result) => {
         description,
         String((0, util_1.floor)(runTime, 5))
     ]);
+    core.summary.addHeading(`${title} ${icon}`).addRaw(result.summary).addBreak();
+    if (!result.success) {
+        core.summary
+            .addTable([
+            [
+                { data: 'Example :link:', header: true },
+                { data: 'Description :pencil2:', header: true },
+                { data: 'Message :x:', header: true }
+            ],
+            ...rows
+        ])
+            .addBreak();
+    }
     await core.summary
-        .addHeading(`${title} ${icon}`)
-        .addRaw(result.summary)
-        .addBreak()
-        .addTable([
-        [
-            { data: 'Example :link:', header: true },
-            { data: 'Description :pencil2:', header: true },
-            { data: 'Message :x:', header: true }
-        ],
-        ...rows
-    ])
-        .addBreak()
         .addHeading(profileTitle, 1)
         .addRaw(slowestExamplesSummary(result))
         .addTable([
