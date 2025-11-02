@@ -22,15 +22,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.reportComment = void 0;
 exports.examples2Table = examples2Table;
 const core = __importStar(require("@actions/core"));
 const github = __importStar(require("@actions/github"));
-const actions_replace_comment_1 = __importDefault(require("@aki77/actions-replace-comment"));
+const actions_replace_comment_1 = __importStar(require("@aki77/actions-replace-comment"));
 const MAX_TABLE_ROWS = 20;
 const MAX_MESSAGE_LENGTH = 200;
 const truncate = (str, maxLength) => {
@@ -69,17 +66,16 @@ const reportComment = async (result) => {
     const icon = result.success ? ':white_check_mark:' : ':x:';
     const title = core.getInput('title', { required: true });
     if (result.success) {
-        await (0, actions_replace_comment_1.default)({
+        await (0, actions_replace_comment_1.deleteComment)({
             ...commentGeneralOptions(),
-            body: `# ${title}
-
-${icon} ${result.summary}`
+            body: `# ${title}`,
+            startsWith: true
         });
+        return;
     }
-    else {
-        await (0, actions_replace_comment_1.default)({
-            ...commentGeneralOptions(),
-            body: `# ${title}
+    await (0, actions_replace_comment_1.default)({
+        ...commentGeneralOptions(),
+        body: `# ${title}
 <details>
 <summary>${icon} ${result.summary}<br><br></summary>
 
@@ -87,8 +83,7 @@ ${await examples2Table(result.examples)}
 
 </details>
 `
-        });
-    }
+    });
 };
 exports.reportComment = reportComment;
 //# sourceMappingURL=report-comment.js.map

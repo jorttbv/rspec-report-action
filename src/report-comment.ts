@@ -1,7 +1,7 @@
 import * as core from '@actions/core'
 import * as github from '@actions/github'
 import type {RspecResult} from './parse'
-import replaceComment from '@aki77/actions-replace-comment'
+import replaceComment, {deleteComment} from '@aki77/actions-replace-comment'
 
 const MAX_TABLE_ROWS = 20
 const MAX_MESSAGE_LENGTH = 200
@@ -57,16 +57,17 @@ export const reportComment = async (result: RspecResult): Promise<void> => {
   const title = core.getInput('title', {required: true})
 
   if (result.success) {
-    await replaceComment({
+    await deleteComment({
       ...commentGeneralOptions(),
-      body: `# ${title}
-
-${icon} ${result.summary}`
+      body: `# ${title}`,
+      startsWith: true
     })
-  } else {
-    await replaceComment({
-      ...commentGeneralOptions(),
-      body: `# ${title}
+    return
+  }
+
+  await replaceComment({
+    ...commentGeneralOptions(),
+    body: `# ${title}
 <details>
 <summary>${icon} ${result.summary}<br><br></summary>
 
@@ -74,6 +75,5 @@ ${await examples2Table(result.examples)}
 
 </details>
 `
-    })
-  }
+  })
 }
