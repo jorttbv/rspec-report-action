@@ -68,12 +68,9 @@ export const reportComment = async (result: RspecResult): Promise<void> => {
   await replaceComment({
     ...commentGeneralOptions(),
     body: `# ${title}
-<details>
-<summary>${icon} ${result.summary}<br><br></summary>
 
-${await examples2Table(result.examples)}
+${icon} ${result.summary}
 
-</details>
-`
+${await examples2Table(result.examples)}`
   })
 }

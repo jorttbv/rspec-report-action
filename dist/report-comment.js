@@ -76,13 +76,10 @@ const reportComment = async (result) => {
     await (0, actions_replace_comment_1.default)({
         ...commentGeneralOptions(),
         body: `# ${title}
-<details>
-<summary>${icon} ${result.summary}<br><br></summary>
 
-${await examples2Table(result.examples)}
+${icon} ${result.summary}
 
-</details>
-`
+${await examples2Table(result.examples)}`
     });
 };
 exports.reportComment = reportComment;
